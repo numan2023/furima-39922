@@ -16,4 +16,6 @@ class User < ApplicationRecord
     validates :sei_kana
     validates :mei_kana
   end
+
+  has_many :items
 end
