@@ -5,6 +5,6 @@ class AddNicknameToUsers < ActiveRecord::Migration[7.0]
     add_column :users, :mei,      :string, null: false
     add_column :users, :sei_kana, :string, null: false
     add_column :users, :mei_kana, :string, null: false
-    add_column :users, :birthday, :date,   null: false, default: '2000-01-01'
+    add_column :users, :birthday, :date,   null: false
   end
 end
