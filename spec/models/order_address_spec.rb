@@ -60,6 +60,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Tel is too short")
       end
+      it 'telが文字数が12以上と保存できないこと' do
+        @order_address.tel = '123456789123'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Tel is too short")
+      end
       it 'telが半角数字以外だと保存できないこと' do
         @order_address.tel = '０１２３４５６７８９'
         @order_address.valid?
