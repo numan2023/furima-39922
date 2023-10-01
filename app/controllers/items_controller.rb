@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_tweet, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :sold_to_top]
   before_action :move_to_index, only: [:edit, :destroy]
+  before_action :sold_to_top, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -47,7 +48,7 @@ class ItemsController < ApplicationController
                                  :delivery_date_id, :price).merge(user_id: current_user.id)
   end
 
-  def set_tweet
+  def set_item
     @item = Item.find(params[:id])
   end
 
@@ -58,10 +59,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def move_to_top
-  #  @item = Item.find(params[:id])
-  #  if ＠item.purchase.present?
-  #    redirect_to root_path
-  #  end
-  #end
+  def sold_to_top
+    if current_user.id == @item.user_id && @item.order.present?
+      redirect_to root_path
+    end
+  end
 end
