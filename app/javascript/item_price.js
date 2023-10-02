@@ -10,3 +10,4 @@ const priceInput = document.getElementById("item-price");
 };
 
  window.addEventListener('turbo:load', calc_price);
+ window.addEventListener("turbo:render", calc_price);
